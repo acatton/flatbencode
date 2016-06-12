@@ -1,0 +1,10 @@
+# Compiled files
+*.py[cod]
+__pycache__
+
+# Distribution
+*.egg-info
+/dist
+
+# Pytest
+/.cache
