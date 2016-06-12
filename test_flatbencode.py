@@ -47,6 +47,9 @@ def test_decode_simple(data, expected):
     assert decode(data) == expected
 
 
+MIN_RECURSION = 200
+
+
 # This test makes sure that no data can crash decode function. Thus parsing
 # untrusted data with this library is safe.
 @pytest.mark.parametrize('depth', [10, 100, 500, 1000, 1500])
@@ -56,10 +59,10 @@ def test_decode_recursion(depth):
 
     # Test that we don't have any nesting limit (many implementation uses
     # recursivity which blows up the stack.)
-    with maximum_recursion(100):
+    with maximum_recursion(MIN_RECURSION):
         result = decode(data)
 
-    with maximum_recursion(depth ** 2):
+    with maximum_recursion(max(depth ** 2, MIN_RECURSION)):
         assert result == expected
 
 
