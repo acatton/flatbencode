@@ -135,7 +135,7 @@ def encode(obj):
 
         if isinstance(obj, dict):
             if not all(isinstance(k, (bytes, str)) for k in obj.keys()):
-                raise ValueError("Dictionnary keys must be strings")
+                raise ValueError("Dictionary keys must be strings")
             yield DICT_START
             for k, v in obj.items():
                 yield from generator(k)
