@@ -121,6 +121,8 @@ def decode(s):
             elem = _read_string(c, buf)
 
         if not stack:
+            if buf.read(ONE_CHAR):  # End of string?
+                raise DecodingError
             return elem
         else:
             stack.append(elem)
