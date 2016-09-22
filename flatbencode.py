@@ -130,9 +130,6 @@ def decode(s):
 
 def encode(obj):
     def generator(obj):
-        if isinstance(obj, str):
-            obj = obj.encode('utf-8')  # XXX: Because utf-8 is universal?
-
         if isinstance(obj, dict):
             if not all(isinstance(k, (bytes, str)) for k in obj.keys()):
                 raise ValueError("Dictionary keys must be strings")
