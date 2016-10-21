@@ -101,6 +101,10 @@ values = st.recursive(
 )
 
 
+@pytest.mark.skipif(
+    sys.version_info > (3, 6),
+    reason="Python 3.7 is not supported by hypothesis"
+)
 @given(obj=values)
 @example(obj=0)
 @example(obj=1)
@@ -112,6 +116,10 @@ def test_prop_decode_encode_is_a_noop(obj):
     assert decode(encode(obj)) == obj
 
 
+@pytest.mark.skipif(
+    sys.version_info > (3, 6),
+    reason="Python 3.7 is not supported by hypothesis"
+)
 @given(obj=values)
 def test_prop_encode_is_stable(obj):
     assert encode(obj) == encode(obj)
