@@ -1,10 +1,10 @@
 import contextlib
 import sys
 
-import pytest
-from hypothesis import given
 from hypothesis import example
+from hypothesis import given
 from hypothesis import strategies as st
+import pytest
 
 from flatbencode import decode
 from flatbencode import DecodingError
