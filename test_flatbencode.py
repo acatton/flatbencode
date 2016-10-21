@@ -126,6 +126,10 @@ def test_prop_encode_is_stable(obj):
     assert encode(obj) == encode(obj)
 
 
+@pytest.mark.skipif(
+    sys.version_info > (3, 5),
+    reason="There's some bug with Hypothesis and Python 3.6",
+)
 @settings(max_examples=10)
 @given(obj=values)
 @given(extra=st.binary(min_size=1))
