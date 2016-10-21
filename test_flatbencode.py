@@ -3,6 +3,7 @@ import sys
 
 from hypothesis import example
 from hypothesis import given
+from hypothesis import settings
 from hypothesis import strategies as st
 import pytest
 
@@ -123,3 +124,11 @@ def test_prop_decode_encode_is_a_noop(obj):
 @given(obj=values)
 def test_prop_encode_is_stable(obj):
     assert encode(obj) == encode(obj)
+
+
+@settings(max_examples=10)
+@given(obj=values)
+@given(extra=st.binary(min_size=1))
+def test_prop_trailing_data_is_invalid(obj, extra):
+    with pytest.raises(DecodingError):
+        assert decode(encode(obj) + extra)
