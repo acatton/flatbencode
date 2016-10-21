@@ -135,9 +135,12 @@ def encode(obj):
             if not all(isinstance(k, (bytes, str)) for k in obj.keys()):
                 raise ValueError("Dictionary keys must be strings")
             yield DICT_START
-            for k, v in obj.items():
+            # Dictionary keys should be sorted according to the BEP-0003:
+            #    "Keys must be strings and appear in sorted order (sorted as
+            #    raw strings, not alphanumerics)."
+            for k in sorted(obj.keys()):
                 yield from generator(k)
-                yield from generator(v)
+                yield from generator(obj[k])
             yield END
         elif isinstance(obj, list):
             yield LIST_START

@@ -91,3 +91,12 @@ def test_invalid_values(data):
 ])
 def test_encode(obj):
     assert decode(encode(obj)) == obj
+
+
+@pytest.mark.parametrize('dictionary,expected', [
+    ({b'a': b'b'}, b'd1:a1:be'),
+    ({b'a': 0, b'b': 1, b'c': b'c'}, b'd1:ai0e1:bi1e1:c1:ce'),
+    ({b'z': 0, b'a': 0}, b'd1:ai0e1:zi0ee'),
+])
+def test_dict_keys_are_alphabetically_sorted(dictionary, expected):
+    assert encode(dictionary) == expected
