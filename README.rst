@@ -30,3 +30,22 @@ Run tests
 
     $ pip install pytest hypothesis
     $ py.test -v
+
+
+Changelog
+---------
+
+v0.2.0 (not yet released)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Raise an exception when there's still data left. [Tim Ruffing, #2]
+* Use bytes as python dictionary keys (instead of strings) [Tim Ruffing, #2]
+* Sort dictionary keys when serializing (follows the BEP-0003) [Antoine Catton]
+
+
+v0.1.0 (2016-06-12)
+^^^^^^^^^^^^^^^^^^^
+
+* Initial release.
+* Can decode bencoding into a python datastructure.
+* Can encode a python datastructure into bencoding serialization format.
