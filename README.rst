@@ -4,9 +4,10 @@ flatbencode
 .. image:: https://travis-ci.org/acatton/flatbencode.svg?branch=master
     :target: https://travis-ci.org/acatton/flatbencode
 
-Fast and safe implementation of bencode in pure python 3, without any C extension.
+Fast, safe and thoroughly tested implementation of ``bencode`` in pure Python
+3, without any C extension.
 
-This is called ``flatbencode`` because the algorithm for decoding a bencode
+This is called ``flatbencode`` because the algorithm for decoding a ``bencode``
 structure is non-recursive, thus preventing ``RuntimeException``.
 
 
