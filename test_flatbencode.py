@@ -2,6 +2,9 @@ import contextlib
 import sys
 
 import pytest
+from hypothesis import given
+from hypothesis import example
+from hypothesis import strategies as st
 
 from flatbencode import decode
 from flatbencode import DecodingError
@@ -81,18 +84,6 @@ def test_invalid_values(data):
         decode(data)
 
 
-@pytest.mark.parametrize('obj', [
-    0,
-    1,
-    500,
-    b'hello',
-    [b'hello', b'world'],
-    {b'hello': b'world', b',': [b'mister', b'miss']},
-])
-def test_encode(obj):
-    assert decode(encode(obj)) == obj
-
-
 @pytest.mark.parametrize('dictionary,expected', [
     ({b'a': b'b'}, b'd1:a1:be'),
     ({b'a': 0, b'b': 1, b'c': b'c'}, b'd1:ai0e1:bi1e1:c1:ce'),
@@ -100,3 +91,27 @@ def test_encode(obj):
 ])
 def test_dict_keys_are_alphabetically_sorted(dictionary, expected):
     assert encode(dictionary) == expected
+
+
+values = st.recursive(
+    st.integers() | st.binary(),
+    lambda children: (
+        st.lists(children) | st.dictionaries(st.binary(), children)
+    )
+)
+
+
+@given(obj=values)
+@example(obj=0)
+@example(obj=1)
+@example(obj=500)
+@example(obj=b'hello')
+@example(obj=[b'hello', b'world'])
+@example(obj={b'hello': b'world', b',': [b'mister', b'miss']})
+def test_prop_decode_encode_is_a_noop(obj):
+    assert decode(encode(obj)) == obj
+
+
+@given(obj=values)
+def test_prop_encode_is_stable(obj):
+    assert encode(obj) == encode(obj)
