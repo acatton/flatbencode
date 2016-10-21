@@ -85,6 +85,7 @@ def test_order_is_preserved():
     b'i-0e',
     b'dlelee',
     b'i5etrailing',
+    b'4:spamle',
 ])
 def test_invalid_values(data):
     with pytest.raises(DecodingError):
