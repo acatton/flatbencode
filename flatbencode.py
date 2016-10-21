@@ -121,6 +121,9 @@ def decode(s):
             elem = _read_string(c, buf)
 
         if not stack:
+            end_of_string = not buf.read(ONE_CHAR)
+            if not end_of_string:
+                raise DecodingError
             return elem
         else:
             stack.append(elem)
@@ -128,12 +131,9 @@ def decode(s):
 
 def encode(obj):
     def generator(obj):
-        if isinstance(obj, str):
-            obj = obj.encode('utf-8')  # XXX: Because utf-8 is universal?
-
         if isinstance(obj, dict):
             if not all(isinstance(k, (bytes, str)) for k in obj.keys()):
-                raise ValueError("Dictionnary keys must be strings")
+                raise ValueError("Dictionary keys must be strings")
             yield DICT_START
             for k, v in obj.items():
                 yield from generator(k)
