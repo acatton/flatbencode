@@ -12,7 +12,7 @@ structure is non-recursive, thus preventing ``RuntimeException``.
 Run tests
 ---------
 
-:
+.. code::
 
     $ pip install pytest hypothesis
     $ py.test -v
