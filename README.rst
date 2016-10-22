@@ -39,6 +39,11 @@ Changelog
 v0.3.0 (not released yet)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+v0.2.1 (2016-10-22)
+^^^^^^^^^^^^^^^^^^^
+
+* Do not accept strings as dictionary keys [Antoine Catton]
+
 v0.2.0 (2016-10-22)
 ^^^^^^^^^^^^^^^^^^^
 
