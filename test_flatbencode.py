@@ -92,6 +92,17 @@ def test_invalid_values(data):
         decode(data)
 
 
+@pytest.mark.parametrize('obj', [
+    {'string key': b'bytes'},
+    ['string'],
+    'string',
+    3.14,
+])
+def test_encode_typechecks(obj):
+    with pytest.raises(ValueError):
+        encode(obj)
+
+
 @pytest.mark.parametrize('dictionary,expected', [
     ({b'a': b'b'}, b'd1:a1:be'),
     ({b'a': 0, b'b': 1, b'c': b'c'}, b'd1:ai0e1:bi1e1:c1:ce'),

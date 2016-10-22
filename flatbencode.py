@@ -132,7 +132,7 @@ def decode(s):
 def encode(obj):
     def generator(obj):
         if isinstance(obj, dict):
-            if not all(isinstance(k, (bytes, str)) for k in obj.keys()):
+            if not all(isinstance(k, bytes) for k in obj.keys()):
                 raise ValueError("Dictionary keys must be strings")
             yield DICT_START
             # Dictionary keys should be sorted according to the BEP-0003:
