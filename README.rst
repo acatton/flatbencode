@@ -36,8 +36,8 @@ Run tests
 Changelog
 ---------
 
-v0.2.0 (not yet released)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+v0.2.0 (2016-10-22)
+^^^^^^^^^^^^^^^^^^^
 
 * Raise an exception when there's still data left. [Tim Ruffing, #2]
 * Use bytes as python dictionary keys (instead of strings) [Tim Ruffing, #2]

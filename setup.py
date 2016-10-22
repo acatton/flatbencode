@@ -4,16 +4,17 @@ from setuptools import setup
 
 
 def read(fname):
-    absolute_fname = os.path.join(os.path.dir(__file__), fname)
+    absolute_fname = os.path.join(os.path.dirname(__file__), fname)
     with open(absolute_fname, 'r') as fp:
         return fp.read()
 
 
 setup(
     name='flatbencode',
-    version='0.1.1-dev',
+    version='0.2.0',
     author="Antoine Catton",
     description="Fast, safe and non-recursive implementation of Bittorrent bencoding for Python 3",
+    long_description=read('README.rst'),
     license='MIT',
     keywords="bencoding bencode bittorrent fast non-recursive stack maximum recursion",
     url='http://github.com/acatton/flatbencode',
