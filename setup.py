@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name='flatbencode',
-    version='0.2.0',
+    version='0.2.1',
     author="Antoine Catton",
     description="Fast, safe and non-recursive implementation of Bittorrent bencoding for Python 3",
     long_description=read('README.rst'),
